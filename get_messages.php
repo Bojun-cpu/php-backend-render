@@ -1,9 +1,18 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// 跨域设置：允许来自你 Vercel 的前端
+header("Access-Control-Allow-Origin: https://nextjs-project-sandy-one.vercel.app");
+header("Access-Control-Allow-Methods: GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-$conn_str = "postgresql://neondb_owner:npg_6YkMQecdl0JN@ep-steep-recipe-a4516x20-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&options=endpoint%3Dep-steep-recipe-a4516x20";
-$conn = pg_connect($conn_str);
+// 处理预检请求
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+// 正确的数据库连接方式（替换掉 URI 连接格式）
+$conn = pg_connect("host=ep-summer-art-a44gr677-pooler.us-east-1.aws.neon.tech port=5432 dbname=neondb user=neondb_owner password=npg_S0dr5QJLOwkB sslmode=require");
 
 if (!$conn) {
     http_response_code(500);
@@ -11,6 +20,7 @@ if (!$conn) {
     exit;
 }
 
+// 查询留言
 $result = pg_query($conn, "SELECT id, name, email, message, created_at FROM messages ORDER BY created_at DESC");
 
 $messages = [];
