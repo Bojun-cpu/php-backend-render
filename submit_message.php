@@ -3,7 +3,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
-$conn = pg_connect("host=ep-steep-recipe-a4516x20-pooler.us-east-1.aws.neon.tech port=5432 dbname=neondb user=neondb_owner password=这里填你从 Neon 控制台复制的密码 sslmode=require");
+$conn = pg_connect("host=ep-summer-art-a44gr677-pooler.us-east-1.aws.neon.tech port=5432 dbname=neondb user=neondb_owner password=npg_S0dr5QJLOwkB sslmode=require");
 
 
 if (!$conn) {
